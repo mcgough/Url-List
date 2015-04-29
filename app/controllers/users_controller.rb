@@ -6,8 +6,10 @@ class UsersController < ApplicationController
   def create
     @user = User.new(user_params)
     if @user.save
-      redirect_to root_path
+      flash[:success] = 'Profile created'
+      redirect_to login_path
     else
+      flash[:danger] = 'Certain fields invalid'
       render 'new'
     end
   end

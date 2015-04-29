@@ -5,7 +5,7 @@
   <div class='col-md-4 col-md-offset-4'>
   <ol>
     <% @post.each do |title| %>
-    <li class='front-posts'><a href='<%= title.link %>' class='front-link'><%= title.title %></a></li>
+    <li class='front-posts'><a href='<%= title.link %>' class='front-link'><%= title.title %></a> | <small><%= title.user.email %></small></li>
     <% end %>
   </ol>
 </div>

@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
 
   validates :username,
     presence: true,
-    length: {maximum: 20}
+    length: {mimimum: 3, maximum: 20}
 
   validates :email,
     presence: true,

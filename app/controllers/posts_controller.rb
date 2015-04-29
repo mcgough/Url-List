@@ -3,7 +3,7 @@ class PostsController < ApplicationController
   before_action :is_authenticated?, unless: [:index]
 
   def index
-    @post = Post.all
+    @post = Post.all.order(created_at: :desc)
   end
 
   def new
@@ -36,5 +36,8 @@ class PostsController < ApplicationController
     params.require(:post).permit(:title,:link)
   end
 
+  def current_user
+    @current_user ||= User.find_by_id(session[:user_id])
+  end
 
 end
