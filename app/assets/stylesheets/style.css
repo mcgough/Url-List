@@ -1,0 +1,13 @@
+.front-link {
+  color: black;
+}
+.front-link:hover {
+  text-decoration: none;
+}
+.front-posts {
+  margin-top: 25px;
+  font-size: 15px;
+}
+.table {
+  margin-top: 50px;
+}
