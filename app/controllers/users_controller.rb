@@ -1,7 +1,14 @@
 class UsersController < ApplicationController
 
+  before_action :is_authenticated?, :only => [:create]
+
   def new
   end
+
+  def show
+     @post = Post.where(user_id: @current_user.id)
+  end
+
 
   def create
     @user = User.new(user_params)

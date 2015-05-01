@@ -1,5 +1,9 @@
 body {
-  background-color: 'goldenrod';
+  background-color: gainsboro;
+  /*min-height: 1000px;*/
+}
+.front-page {
+  font-size: 4em;
 }
 .front-link {
   color: black;
@@ -10,7 +14,19 @@ body {
 .front-posts {
   margin-top: 25px;
   font-size: 15px;
+  padding-left: 5px;
 }
 .table {
+  margin: auto 0;
   margin-top: 50px;
+}
+td {
+  padding: 15px;
+  padding-left: 30px;
+}
+tr {
+  margin-top: 15px;
+}
+.downvote {
+  margin-left: -25px;
 }

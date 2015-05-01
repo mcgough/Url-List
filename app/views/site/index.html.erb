@@ -14,7 +14,8 @@
 
         <%= f.button "", :class => 'btn btn-primary btn-xs glyphicon glyphicon-arrow-up' %>
         <% end %>
-
+      </td>
+      <td>
         <%= bootstrap_form_for [post,@vote] do |f| %>
 
         <%= f.hidden_field :value, value: "-1" %>
@@ -25,11 +26,17 @@
       <td>
         <%= post.votes.reduce(0){|sum,v| sum + v.value} %>
       </td>
-      <td class='front-posts'><a href='<%= post.link %>' class='front-link'><%= post.title %></a>
+      <td class='front-posts'>
+        <a href='<%= post.link %>'><%= post.title %></a>
       </td>
+
       <td>
         <small><%= post.user.username %></small>
        </td>
+       <td>
+         <%= link_to 'Comments', post_path(post.id), :class => 'btn btn-primary btn-xs' %>
+       </td>
+
     <tr>
 
     <% end %>

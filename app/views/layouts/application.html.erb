@@ -2,17 +2,15 @@
 <html>
 <head>
   <title>UrlLister</title>
+  <link rel="stylesheet" media="screen" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
+  <script src="//code.jquery.com/jquery.js"></script>
+  <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <!-- Latest compiled and minified CSS & JS -->
-  <link rel='stylesheet' href='/assests/stylesheets/style.css'>
-  <link rel="stylesheet" media="screen" href="//netdna.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css">
-  <script src="//code.jquery.com/jquery.js"></script>
-  <script src="//netdna.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
 </head>
 <body>
-  <div id='wrapper'>
   <nav class="navbar navbar-inverse">
     <a class="navbar-brand" href="#"><%= "#{@current_user.username}" if @current_user %></a>
     <ul class="nav navbar-nav">
@@ -32,7 +30,7 @@
           <a href='/posts/new'>Add Post</a>
         </li>
         <li>
-          <a href='/posts/show'>Your Posts</a>
+          <%= link_to 'Your Posts', show_path %>
         </li>
         <li>
           <a href='/logout/'>Logout</a>
@@ -46,7 +44,7 @@
     </div>
 
 <%= yield %>
-  </div>
+
   </div>
 </body>
 </html>

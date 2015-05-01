@@ -1,31 +1,44 @@
+<h1 class='text-center'><%= @post.title %></h1>
 <div class='row'>
-  <div class='col-md-6 col-md-offset-3'>
-  <h1 class='text-center'><%= "#{@current_user.username}" if @current_user %>'s Posts</h1>
-  <div class="table-responsive user-table">
-    <table class="table table-hover">
-      <thead>
-        <tr>
-          <th>Title</th>
-          <th>Link</th>
-        </tr>
-      </thead>
-      <tbody>
-        <% @post.each do |p| %>
-        <tr>
-          <td><%= p.title %></td>
-          <td><%= p.link %></td>
-          <td>  <%= link_to '', post_path(p.id), :class =>'btn btn-danger glyphicon glyphicon-trash danger',
-        method: :delete,
-        data: {confirm: 'Are you sure?'} %>
-        </tr>
-        <% end %>
-      </tbody>
-    </table>
+<div class='col-md-6 col-md-offset-3'>
+<%= bootstrap_form_for [@post,@comment] do |f| %>
+<%= f.text_field :body,hide_label: true, placeholder: 'Enter new comment' %>
+<%= f.submit :class => 'btn btn-primary' %>
+<% end %>
+</div>
+</div>
+<div class='row'>
+<h2 class='text-center'>Comments</h2>
+<div class='col-md-6 col-md-offset-3'>
+<table>
+<% @comments.each do |comment| %>
+<tr>
+<td>
+    <%= comment.body %><br><small><%= comment.user.username %></small>
+</td>
+<td>
+  <%= comment.votes.reduce(0){|sum,v| sum + v.value} %>
+</td>
+<td>
+  <div class='vote-button'>
+  <%= bootstrap_form_for [@post,comment,@vote] do |f| %>
+  <%= f.hidden_field :value, value: "1" %>
+
+  <%= f.button "", :class => 'btn btn-primary btn-xs glyphicon glyphicon-arrow-up upvote' %>
+  <% end %>
   </div>
+  </td>
+  <td>
+  <div>
+  <%= bootstrap_form_for [@post,comment,@vote] do |f| %>
 
-
-
-
-
+  <%= f.hidden_field :value, value: "-1" %>
+  <%= f.button "", :class => 'btn btn-danger btn-xs glyphicon glyphicon-arrow-down downvote' %>
+  <% end %>
   </div>
+</td>
+</tr>
+<% end %>
+</table>
+</div>
 </div>

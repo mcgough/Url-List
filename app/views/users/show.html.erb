@@ -1,0 +1,28 @@
+<div class='row'>
+  <div class='col-md-6 col-md-offset-3'>
+  <h1 class='text-center'><%= "#{@current_user.username}" if @current_user %>'s Posts</h1>
+  <div class="table-responsive user-table">
+    <table class="table table-hover">
+      <thead>
+
+      </thead>
+      <tbody>
+        <% @post.each do |p| %>
+        <tr>
+          <td><a href='<%= p.link %>'><%= p.title %></a></td>
+          <td><%= link_to 'Comments', post_path(p.id), :class => 'btn btn-primary btn-xs' %>
+          <td>  <%= link_to '', post_path(p.id), :class =>'btn btn-danger btn-xs glyphicon glyphicon-trash danger',
+        method: :delete,
+        data: {confirm: 'Are you sure?'} %>
+        </tr>
+        <% end %>
+      </tbody>
+    </table>
+  </div>
+
+
+
+
+
+  </div>
+</div>

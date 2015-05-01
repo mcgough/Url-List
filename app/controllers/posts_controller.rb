@@ -1,9 +1,9 @@
 class PostsController < ApplicationController
 
-  before_action :is_authenticated?, unless: [:index]
+  before_action :is_authenticated?
 
   def index
-    @post = Post.all.order(created_at: :desc)
+
   end
 
   def new
@@ -21,13 +21,19 @@ class PostsController < ApplicationController
   end
 
   def show
-    @post = Post.where(user_id: @current_user.id)
+    @comment = Comment.new
+    @post = Post.find_by_id(params[:id])
+    @comments = Comment.where(post_id: params[:id])
+    @user = current_user
+    @vote =Vote.new
+    # render :json => @comments
   end
+
 
   def destroy
     @post = Post.find(params[:id])
     @post.destroy
-    redirect_to post_path
+    redirect_to '/'
   end
 
   private
@@ -35,6 +41,7 @@ class PostsController < ApplicationController
   def post_params
     params.require(:post).permit(:title,:link)
   end
+
 
   def current_user
     @current_user ||= User.find_by_id(session[:user_id])

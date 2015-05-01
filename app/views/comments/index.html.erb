@@ -1,0 +1,6 @@
+<h1>Comments Index</h1>
+
+<%= bootstrap_form_for [@post,@comment] do |f| %>
+<%= f.text_field :body, placeholder: 'Enter new comment' %>
+<%= f.submit :class => 'btn btn-primary' %>
+<% end %>
